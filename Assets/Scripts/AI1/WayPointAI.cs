@@ -52,8 +52,7 @@ namespace AI
         #region Misc Methods
         public void MoveAi()
         {
-            //move towards target position
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime); //move towards target position
         }
 
         public void CheckHealth()
@@ -76,8 +75,7 @@ namespace AI
 
         public void PatrolTarget()
         {
-            //if arrived at target waypoint
-            if (Vector2.Distance(transform.position, wayPoints[wayPointId].transform.position) < onTarget)
+            if (Vector2.Distance(transform.position, wayPoints[wayPointId].transform.position) < onTarget) //if arrived at target waypoint
             {
                 if (wayPointId == wayPoints.Length - 1) //if waypoint is last waypoint
                 {
@@ -88,11 +86,11 @@ namespace AI
                     wayPointId++; //move to next waypoint
                 }
             }
-            targetPos = wayPoints[wayPointId].transform.position; //target is waypoint
+            targetPos = wayPoints[wayPointId].transform.position; //new target is waypoint
         }
         #endregion
         #region Next State
-        private void NextBehaviour()
+        private void NextBehaviour() //code comment this part bc don't understand it yet
         {
             string methodName = behaviour.ToString();
 
@@ -107,27 +105,30 @@ namespace AI
         #region Behaviour Methods
         private IEnumerator Patrol()
         {
-            while (behaviour == AiBehaviour.Patrol)
+            while (behaviour == AiBehaviour.Patrol) //while behaviour is in patrolling state
             {
-                PatrolTarget();
-                MoveAi();
+                CheckHealth();
+
+                PatrolTarget(); //find target of patrol
+                MoveAi(); //move in target direction
 
                 if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
                 {
                     behaviour = AiBehaviour.Chase; //behaviour is chasing
                 }
 
-                yield return null;
+                yield return null; //do this enumeration again
             }
-            CheckHealth();
             NextBehaviour();
         }
         private IEnumerator Chase()
         {
-            while (behaviour == AiBehaviour.Chase)
+            while (behaviour == AiBehaviour.Chase) //while behaviour is in chasing state
             {
+                CheckHealth();
+
                 targetPos = playerObject.transform.position; //target is player position
-                MoveAi();
+                MoveAi(); //move towards player
 
                 if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
                 {
@@ -138,15 +139,16 @@ namespace AI
                     behaviour = AiBehaviour.Patrol; //behaviour is patrolling
                 }
 
-                yield return null;
+                yield return null; //do this enumeration again
             }
-            CheckHealth();
             NextBehaviour();
         }
         private IEnumerator Attack()
         {
-            while (behaviour == AiBehaviour.Attack)
+            while (behaviour == AiBehaviour.Attack) //while behaviour is in attack state
             {
+                CheckHealth();
+
                 playerStats.health -= strength; //do damage
                 health -= playerStats.strength; //take damage
 
@@ -158,18 +160,19 @@ namespace AI
                     behaviour = AiBehaviour.Chase; //behaviour is chasing
                 }
             }
-            CheckHealth();
             NextBehaviour();
         }
         private IEnumerator Flee()
         {
-            while (behaviour == AiBehaviour.Flee)
+            while (behaviour == AiBehaviour.Flee) //while behaviour is in flight state
             {
                 CheckDeath();
 
                 if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
                 {
-                    targetPos = -playerObject.transform.position; //target is negative player position
+                    Vector3 difference = playerObject.transform.position - transform.position;
+                    targetPos = transform.position - difference;
+
                     //change this to a distance from player somehow
 
                     if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
@@ -177,7 +180,7 @@ namespace AI
                         health -= playerStats.strength * Time.deltaTime; //take damage
                     }
 
-                    MoveAi();
+                    MoveAi(); //move towards target position
                 }
                 yield return null;
             }
