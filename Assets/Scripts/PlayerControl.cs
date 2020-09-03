@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 
 namespace AI
 {
@@ -11,21 +11,46 @@ namespace AI
     {
         #region Variables
         [Header("Reference Variables")]
-        public float speed = 1500;
         public Rigidbody2D _playerRigidbody;
+        [Range(0, 100)]
+        public float health;
+        public float heal, maxHealth;
+        public int speed, strength, killCount;
+        
 
         private float _moveH, _moveV;
         #endregion
+        #region Start
         void Start()
         {
             _playerRigidbody = GetComponent<Rigidbody2D>();
-        }
 
+            //set stats
+            speed = 150;
+            health = 100;
+            strength = 30;
+            heal = 2;
+            maxHealth = health;
+        }
+        #endregion
+        #region Update
         void Update()
         {
+            if (health <= 0) //if no health
+            {
+#if UNITY_EDITOR
+                EditorApplication.isPlaying = false; //exit play mode
+#endif
+                Application.Quit(); //quit game
+            }
 
+            if (health < maxHealth) //if hurt
+            {
+                health += heal * Time.deltaTime; //heal
+            }
         }
-
+        #endregion
+        #region FixedUpdate
         private void FixedUpdate()
         {
             _moveH = Input.GetAxis("Horizontal");
@@ -35,5 +60,6 @@ namespace AI
 
             _playerRigidbody.AddForce(moveDirection * speed);
         }
+        #endregion
     }
 }
