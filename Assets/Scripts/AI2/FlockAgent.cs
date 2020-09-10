@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AI
 {
     [AddComponentMenu("AI/Flock Agent")]
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(CircleCollider2D))]
     public class FlockAgent : MonoBehaviour
     {
         #region Variables

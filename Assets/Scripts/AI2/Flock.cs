@@ -22,7 +22,7 @@ namespace AI
 
         [Range(1f, 10f)] public float neighbourRadius = 1.5f;
 
-        [Range(0f, 1f)] public float avoidanceRadius = 0.5f;
+        [Range(0f, 10f)] public float avoidanceRadius = 0.5f;
 
         private float squareMaxSpeed, squareNeighbourRadius, squareAvoidanceRadius; //store square roots
         #endregion
@@ -57,5 +57,39 @@ namespace AI
             }
         }
         #endregion
+        #region Update
+        void Update()
+        {
+            foreach (FlockAgent agent in agents) //for each FlockAgent script in agents list
+            {
+                List<Transform> context = GetNearbyObjects(agent); //get context list of neighbours for this agent
+                Vector2 move = behaviour.CalculateMove(agent, context, this); //calculates the movement of the agent based on the agent, its neighbours, and the flock
+                move *= driveFactor; //increase speed
+                if (move.sqrMagnitude > squareMaxSpeed) //if speed is greater than max speed
+                {
+                    move = move.normalized * maxSpeed; //keep the direction but set speed to max speed
+                }
+                agent.Move(move); //move agent according to calculations
+            }
+        }
+        #endregion
+
+        /// <summary>Finds the transform of colliders within the neighbour range of the given flock agent.</summary>
+        /// <param name="agent"></param>
+        /// <returns>List of transforms of neighbouring flock agents.</returns>
+        List<Transform> GetNearbyObjects(FlockAgent agent)
+        {
+            List<Transform> context = new List<Transform>(); //new empty list
+            Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighbourRadius); //fill list with everything agent's neighbour radius collides with
+            foreach (Collider2D collider in contextColliders) //for each collider in the contextColliders array
+            {
+                if (collider != agent.AgentCollider) //if the collider is not the agent's collider
+                {
+                    context.Add(collider.transform); //add the collider to the context list
+                }
+            }
+
+            return context;
+        }
     }
 }
