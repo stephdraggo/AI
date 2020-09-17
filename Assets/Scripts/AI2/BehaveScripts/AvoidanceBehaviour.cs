@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI
+namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Avoidance")]
     [AddComponentMenu("AI/Flock Behaviour/Avoidance")]

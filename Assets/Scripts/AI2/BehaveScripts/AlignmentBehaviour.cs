@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI
+namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Alignment")]
     [AddComponentMenu("AI/Flock Behaviour/Alignment")]

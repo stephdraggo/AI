@@ -329,10 +329,10 @@ MonoBehaviour:
     type: 3}
   behaviour: {fileID: 11400000, guid: c6de7eccac222e24a8f966bacbc1b5c1, type: 2}
   startingCount: 250
-  driveFactor: 50
-  maxSpeed: 10
-  neighbourRadius: 10
-  avoidanceRadius: 10
+  driveFactor: 10
+  maxSpeed: 5
+  neighbourRadius: 3
+  avoidanceRadius: 1
 --- !u!4 &1799188823
 Transform:
   m_ObjectHideFlags: 0

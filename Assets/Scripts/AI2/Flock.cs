@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI
+namespace AI2
 {
     [AddComponentMenu("AI/Flock")]
     public class Flock : MonoBehaviour
