@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AI
+namespace AI1
 {
     [AddComponentMenu("AI/WayPointAI")]
     public class WayPointAI : MonoBehaviour

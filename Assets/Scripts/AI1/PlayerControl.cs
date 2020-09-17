@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace AI
+namespace AI1
 {
     [AddComponentMenu("AI/PlayerControl")]
     [RequireComponent(typeof(Rigidbody2D))]

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AI
+namespace AI1
 {
     [AddComponentMenu("AI/Global Enums")]
     public class GlobalData : MonoBehaviour
@@ -17,12 +17,12 @@ namespace AI
 
         }
     }
+    public enum AiBehaviour
+    {
+        Patrol,
+        Chase,
+        Attack,
+        Flee
+    }
 }
 
-public enum AiBehaviour
-{
-    Patrol,
-    Chase,
-    Attack,
-    Flee
-}

@@ -68,12 +68,12 @@ namespace AI
 
         
     }
+    public enum State
+    {
+        Crawl,
+        Walk,
+        Run
+    }
 }
 
-//this enum is global
-public enum State
-{
-    Crawl,
-    Walk,
-    Run
-}
+
