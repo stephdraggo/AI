@@ -6,7 +6,7 @@ namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Alignment")]
     [AddComponentMenu("AI/Flock Behaviour/Alignment")]
-    public class AlignmentBehaviour : FlockBehaviour
+    public class AlignmentBehaviour : FilteredFlockBehaviour
     {
         public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
@@ -16,7 +16,10 @@ namespace AI2
             }
 
             Vector2 alignmentMove = Vector2.zero; //default direction is 0
-            foreach (Transform item in context) //for each neighbour
+            //if(filter==null){return context}else{return filter.Filter(agent,context)}
+            List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
+
+            foreach (Transform item in filteredContext) //for each filtered neighbour
             {
                 alignmentMove += (Vector2)item.transform.up; //get average direction by adding
             }

@@ -6,7 +6,7 @@ namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Steered Cohesion")]
     [AddComponentMenu("AI/Flock Behaviour/Steered Cohesion")]
-    public class SteeredCohesionBehaviour : FlockBehaviour
+    public class SteeredCohesionBehaviour : FilteredFlockBehaviour
     {
         #region Variables
         Vector2 currentVelocity;
@@ -21,7 +21,11 @@ namespace AI2
             }
 
             Vector2 cohesionMove = Vector2.zero; //set default to not moving
-            foreach (Transform item in context) //for each neighbour
+
+            //if(filter==null){return context}else{return filter.Filter(agent,context)}
+            List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
+
+            foreach (Transform item in filteredContext) //for each filtered neighbour
             {
                 cohesionMove += (Vector2)item.position; //add all their positions together
             }

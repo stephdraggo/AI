@@ -6,7 +6,7 @@ namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Avoidance")]
     [AddComponentMenu("AI/Flock Behaviour/Avoidance")]
-    public class AvoidanceBehaviour : FlockBehaviour
+    public class AvoidanceBehaviour : FilteredFlockBehaviour
     {
         public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
@@ -17,7 +17,10 @@ namespace AI2
 
             Vector2 avoidanceMove = Vector2.zero; //set default to not moving
             int avoidNeighbours = 0; //number of neighbours to avoid
-            foreach (Transform item in context) //for each neighbour
+            //if(filter==null){return context}else{return filter.Filter(agent,context)}
+            List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
+
+            foreach (Transform item in filteredContext) //for each filtered neighbour
             {
                 if (Vector2.SqrMagnitude(item.position - agent.transform.position) < flock.SquareAvoidanceRadius) //if the distance is less than the avoidance radius
                 {

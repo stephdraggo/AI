@@ -6,7 +6,7 @@ namespace AI2
 {
     [CreateAssetMenu(menuName = "Flock/Behaviour/Cohesion")]
     [AddComponentMenu("AI/Flock Behaviour/Cohesion")]
-    public class CohesionBehaviour : FlockBehaviour
+    public class CohesionBehaviour : FilteredFlockBehaviour
     {
         public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
         {
@@ -16,7 +16,10 @@ namespace AI2
             }
 
             Vector2 cohesiveMove = Vector2.zero; //set default to not moving
-            foreach (Transform item in context) //for each neighbour
+            //if(filter==null){return context}else{return filter.Filter(agent,context)}
+            List<Transform> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
+
+            foreach (Transform item in filteredContext) //for each filtered neighbour
             {
                 cohesiveMove += (Vector2)item.position; //add all their positions together
             }
