@@ -5,14 +5,14 @@ using UnityEditor;
 
 namespace AI1
 {
-    [AddComponentMenu("AI/PlayerControl")]
+    [AddComponentMenu("AI/Player Control")]
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerControl : MonoBehaviour
     {
         #region Variables
         [Header("Reference Variables")]
         public Rigidbody2D _playerRigidbody;
-        [Range(0, 100)]
+        [Range(0, 1000)]
         public float health;
         public float heal, maxHealth;
         public int speed, strength, killCount;
@@ -30,7 +30,7 @@ namespace AI1
             health = 100;
             strength = 30;
             heal = 2;
-            maxHealth = health;
+            maxHealth = 1000;
         }
         #endregion
         #region Update
@@ -38,10 +38,7 @@ namespace AI1
         {
             if (health <= 0) //if no health
             {
-#if UNITY_EDITOR
-                EditorApplication.isPlaying = false; //exit play mode
-#endif
-                Application.Quit(); //quit game
+                Destroy(gameObject);
             }
 
             if (health < maxHealth) //if hurt

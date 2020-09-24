@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace AI1
 {
-    [AddComponentMenu("AI/WayPointAI")]
+    [AddComponentMenu("AI/WayPoint AI")]
     public class WayPointAI : MonoBehaviour
     {
         #region Variables
@@ -50,20 +50,27 @@ namespace AI1
         }
         #endregion
         #region Misc Methods
+        /// <summary>
+        /// Moves towards target position.
+        /// </summary>
         public void MoveAi()
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime); //move towards target position
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
-
+        /// <summary>
+        /// Check health and change behaviour to flight if needed.
+        /// </summary>
         public void CheckHealth()
         {
-            CheckDeath();
+            CheckDeath(); //call check death
             if (health < maxHealth / 4 && health < playerStats.health) //if health less than 25% and less than player's health
             {
                 behaviour = AiBehaviour.Flee; //behaviour is flight
             }
         }
-
+        /// <summary>
+        /// Check health and kill if needed.
+        /// </summary>
         public void CheckDeath()
         {
             if (health <= 0) //if no health
@@ -72,7 +79,9 @@ namespace AI1
                 Destroy(gameObject); //die
             }
         }
-
+        /// <summary>
+        /// Assign target position according to waypoints.
+        /// </summary>
         public void PatrolTarget()
         {
             if (Vector2.Distance(transform.position, wayPoints[wayPointId].transform.position) < onTarget) //if arrived at target waypoint
@@ -90,7 +99,10 @@ namespace AI1
         }
         #endregion
         #region Next State
-        private void NextBehaviour() //code comment this part bc don't understand it yet
+        /// <summary>
+        /// Go to new behaviour method.
+        /// </summary>
+        private void NextBehaviour()
         {
             string methodName = behaviour.ToString();
 
@@ -103,6 +115,9 @@ namespace AI1
         }
         #endregion
         #region Behaviour Methods
+        /// <summary>
+        /// Behaviour when patrolling.
+        /// </summary>
         private IEnumerator Patrol()
         {
             while (behaviour == AiBehaviour.Patrol) //while behaviour is in patrolling state
@@ -121,6 +136,9 @@ namespace AI1
             }
             NextBehaviour();
         }
+        /// <summary>
+        /// Behaviour when chasing.
+        /// </summary>
         private IEnumerator Chase()
         {
             while (behaviour == AiBehaviour.Chase) //while behaviour is in chasing state
@@ -143,6 +161,9 @@ namespace AI1
             }
             NextBehaviour();
         }
+        /// <summary>
+        /// Behaviour when attacking.
+        /// </summary>
         private IEnumerator Attack()
         {
             while (behaviour == AiBehaviour.Attack) //while behaviour is in attack state
@@ -162,6 +183,9 @@ namespace AI1
             }
             NextBehaviour();
         }
+        /// <summary>
+        /// Behaviour when fleeing.
+        /// </summary>
         private IEnumerator Flee()
         {
             while (behaviour == AiBehaviour.Flee) //while behaviour is in flight state
@@ -188,4 +212,11 @@ namespace AI1
         }
         #endregion
     }
+}
+public enum AiBehaviour
+{
+    Patrol,
+    Chase,
+    Attack,
+    Flee
 }
