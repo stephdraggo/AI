@@ -26,8 +26,14 @@ namespace AI1
             //get player object
             playerObject = GameObject.FindGameObjectWithTag("Player");
 
+            if (playerObject == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             //get player script
-            playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+            playerStats = playerObject.GetComponent<PlayerControl>();
 
             //get waypoints 
             wayPoints = GameObject.FindGameObjectsWithTag("WayPoint");
@@ -127,11 +133,13 @@ namespace AI1
                 PatrolTarget(); //find target of patrol
                 MoveAi(); //move in target direction
 
-                if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
+                if (playerObject != null)
                 {
-                    behaviour = AiBehaviour.Chase; //behaviour is chasing
+                    if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
+                    {
+                        behaviour = AiBehaviour.Chase; //behaviour is chasing
+                    }
                 }
-
                 yield return null; //do this enumeration again
             }
             NextBehaviour();
@@ -144,19 +152,24 @@ namespace AI1
             while (behaviour == AiBehaviour.Chase) //while behaviour is in chasing state
             {
                 CheckHealth();
-
-                targetPos = playerObject.transform.position; //target is player position
-                MoveAi(); //move towards player
-
-                if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
+                if (playerObject != null)
                 {
-                    behaviour = AiBehaviour.Attack; //behaviour is attacking
-                }
-                else if (Vector2.Distance(transform.position, playerObject.transform.position) > sightDistance) //if can't see player
-                {
-                    behaviour = AiBehaviour.Patrol; //behaviour is patrolling
-                }
+                    targetPos = playerObject.transform.position; //target is player position
+                    MoveAi(); //move towards player
 
+                    if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
+                    {
+                        behaviour = AiBehaviour.Attack; //behaviour is attacking
+                    }
+                    else if (Vector2.Distance(transform.position, playerObject.transform.position) > sightDistance) //if can't see player
+                    {
+                        behaviour = AiBehaviour.Patrol; //behaviour is patrolling
+                    }
+                }
+                else
+                {
+                    behaviour = AiBehaviour.Patrol;
+                }
                 yield return null; //do this enumeration again
             }
             NextBehaviour();
@@ -176,9 +189,16 @@ namespace AI1
                 yield return new WaitForSeconds(1f); //recharge attack
 
                 MoveAi();
-                if (Vector2.Distance(transform.position, playerObject.transform.position) > onTarget) //if not in range of player
+                if (playerObject != null)
                 {
-                    behaviour = AiBehaviour.Chase; //behaviour is chasing
+                    if (Vector2.Distance(transform.position, playerObject.transform.position) > onTarget) //if not in range of player
+                    {
+                        behaviour = AiBehaviour.Chase; //behaviour is chasing
+                    }
+                }
+                else
+                {
+                    behaviour = AiBehaviour.Patrol;
                 }
             }
             NextBehaviour();
@@ -191,20 +211,26 @@ namespace AI1
             while (behaviour == AiBehaviour.Flee) //while behaviour is in flight state
             {
                 CheckDeath();
-
-                if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
+                if (playerObject != null)
                 {
-                    Vector3 difference = playerObject.transform.position - transform.position;
-                    targetPos = transform.position - difference;
-
-                    //change this to a distance from player somehow
-
-                    if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
+                    if (Vector2.Distance(transform.position, playerObject.transform.position) <= sightDistance) //if can see player
                     {
-                        health -= playerStats.strength * Time.deltaTime; //take damage
-                    }
+                        Vector3 difference = playerObject.transform.position - transform.position;
+                        targetPos = transform.position - difference;
 
-                    MoveAi(); //move towards target position
+                        //change this to a distance from player somehow
+
+                        if (Vector2.Distance(transform.position, playerObject.transform.position) <= onTarget) //if in range of player
+                        {
+                            health -= playerStats.strength * Time.deltaTime; //take damage
+                        }
+
+                        MoveAi(); //move towards target position
+                    }
+                }
+                else
+                {
+                    behaviour = AiBehaviour.Patrol;
                 }
                 yield return null;
             }
