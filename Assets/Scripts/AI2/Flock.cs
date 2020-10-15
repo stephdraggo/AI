@@ -52,35 +52,11 @@ namespace AI2
                     );
                 newAgent.name = "Agent " + i; //set birb's name
 
-                
-                #region set colour (not working)
-                /* Aim:
-                 * keep original hue of prefab,
-                 * give random saturation and value(brightness)
-                 * 
-                 * Currently:
-                 * Value is functional
-                 * Saturation only tints red (bc hue doesn't work?)
-                 * Hue turns black when enabled with saturation, otherwise no effect on colour
-                 */
-                Renderer agentColour = newAgent.GetComponent<SpriteRenderer>(); //connect renderer
-
-                Color.RGBToHSV(agentColour.material.color, out float hue, out float sat, out float val); //get HSV values for the current colour
-                
-                //this changes the shape of the birb and makes the red/pink tint show up
-                //agentColour.material = whiteBirb;
-
-                if (agentPrefab.name=="Agent Blue")
-                {
-                    //set hue to blue(240), green(120) for testing
-                    //hue = 120;
-                }
-                //random saturation and value (brightness)
-                //sat = Random.Range(0f, 1f);
-                val = Random.Range(0f, 1f);
-                agentColour.material.color = Color.HSVToRGB(hue, sat, val); //keep hue, get random saturation and brightness/value
+                #region colour
+                Color colour = agentPrefab.GetComponent<SpriteRenderer>().material.color;
+                colour *= (Random.Range(-255, 255));
+                agentPrefab.GetComponent<SpriteRenderer>().material.color = colour;
                 #endregion
-                
 
                 newAgent.Initialise(this); //make birb according to these directions
                 agents.Add(newAgent); //add the birb to the flock
