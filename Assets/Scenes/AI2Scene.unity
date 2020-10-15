@@ -784,6 +784,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 4801525466485774849, guid: 7ba72b39acdf36b459ece284c307f3d1,
     type: 3}
   behaviour: {fileID: 11400000, guid: c6de7eccac222e24a8f966bacbc1b5c1, type: 2}
+  whiteBirb: {fileID: 2100000, guid: 7e022a8a6e27143429130f596daecb7e, type: 2}
   startingCount: 100
   driveFactor: 10
   maxSpeed: 5
@@ -950,6 +951,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 4801525466485774849, guid: 755ea5a4401eb5c489920584be55128a,
     type: 3}
   behaviour: {fileID: 11400000, guid: 7bc4f775bb559274f93c0e0db8dd7c73, type: 2}
+  whiteBirb: {fileID: 2100000, guid: 7e022a8a6e27143429130f596daecb7e, type: 2}
   startingCount: 100
   driveFactor: 10
   maxSpeed: 5

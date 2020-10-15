@@ -12,6 +12,7 @@ namespace AI2
         public FlockAgent agentPrefab;
         List<FlockAgent> agents = new List<FlockAgent>(); //list of agents in this flock
         public FlockBehaviour behaviour;
+        public Material whiteBirb;
 
         [Range(10, 500)] public int startingCount = 250; //many birbs
         const float AgentDensity = 0.08f; //const values don't change
@@ -60,16 +61,27 @@ namespace AI2
                  * adds a red tint only
                  * does not brighten colours
                  * 
-                 * 
+                 * Idea:
+                 * change to white material and then tint
                  * 
                  */
                 Renderer agentColour = newAgent.GetComponent<SpriteRenderer>(); //connect renderer
 
                 Color.RGBToHSV(agentColour.material.color, out float hue, out float sat, out float val); //get HSV values for the current colour
+                /*
+                //this changes the shape of the birb and makes the red/pink tint show up
+                agentColour.material = whiteBirb;
 
-                agentColour.material.color = Color.white; //this does nothing, manually making the colour white in playmode makes the tint show up correctly
-
-                agentColour.material.color = Random.ColorHSV(hue, hue, 0f, 1f, 0f, 1f); //keep hue, get random saturation and brightness/value
+                if (agentPrefab.name=="Agent Blue")
+                {
+                    Debug.Log("this birb is blue");
+                    //set hue to blue
+                    hue = 240;
+                }*/
+                //random saturation and value (brightness)
+                //sat = Random.Range(0f, 2f);
+                val = Random.Range(0f, 2f);
+                agentColour.material.color = Color.HSVToRGB(hue, sat, val); //keep hue, get random saturation and brightness/value
                 #endregion
 
                 newAgent.Initialise(this); //make birb according to these directions

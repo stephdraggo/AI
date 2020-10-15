@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530c3d19d55ed9948852951de75983e4, type: 3}
-  m_Name: Composite2
+  m_Name: CompRed
   m_EditorClassIdentifier: 
   behaviours:
   - behaviour: {fileID: 11400000, guid: f66425a11bebe16498e1572b496eafef, type: 2}
     weight: 1
   - behaviour: {fileID: 11400000, guid: ce702af7e59ed564a985f489768fda10, type: 2}
     weight: 1
-  - behaviour: {fileID: 11400000, guid: 801fab586946e724c81f16bbdd17363c, type: 2}
-    weight: 5
-  - behaviour: {fileID: 11400000, guid: c2e766316e3f5314ea4730c2358ef806, type: 2}
-    weight: 10
   - behaviour: {fileID: 11400000, guid: d1b75379c2be19445920e609d2f1ecc3, type: 2}
+    weight: 1
+  - behaviour: {fileID: 11400000, guid: 0321ae60eadc3ea4e9fd46d229fcbe05, type: 2}
+    weight: 1
+  - behaviour: {fileID: 11400000, guid: 801fab586946e724c81f16bbdd17363c, type: 2}
+    weight: 1
+  - behaviour: {fileID: 11400000, guid: d57bb89fd5854d74193e9e4bf46bcfe9, type: 2}
     weight: 1
