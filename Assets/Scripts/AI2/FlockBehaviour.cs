@@ -10,7 +10,7 @@ namespace AI2
     public abstract class FlockBehaviour : ScriptableObject
     {
 
-        /// <summary>Calculate direction to move agent according to its position, its neighbours and its flock, in one of three ways: Cohesion, Alignment and Avoidance.</summary>
+        /// <summary>Calculate direction to move agent according to its position, its neighbours and its flock.</summary>
         /// <param name="agent">The agent being moved.</param>
         /// <param name="context">The list of neighbours.</param>
         /// <param name="flock">The flock of the agent.</param>
