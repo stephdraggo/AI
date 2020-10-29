@@ -9,7 +9,7 @@ namespace AI2
     public class WanderBehaviour : FilteredFlockBehaviour
     {
         Path path = null;
-        int currentWaypointIndex = 0;
+        private int currentWaypointIndex = 0;
         Vector2 waypointDirection = Vector2.zero;
 
         public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
@@ -49,7 +49,7 @@ namespace AI2
             if (InRadius(agent))
             {
                 currentWaypointIndex++;
-                if (currentWaypointIndex > path.waypoints.Count)
+                if (currentWaypointIndex >= path.waypoints.Count)
                 {
                     currentWaypointIndex = 0;
                 }

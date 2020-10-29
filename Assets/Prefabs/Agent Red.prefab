@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4801525466485774851}
   - component: {fileID: 4801525466485774848}
   - component: {fileID: 4801525466485774849}
+  - component: {fileID: -8492937961763679221}
   m_Layer: 0
   m_Name: Agent Red
   m_TagString: Untagged
@@ -111,3 +112,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92b2e94e969f634b9cd33c5b1fa4d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8492937961763679221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801525466485774862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ee6da260cc72a4a874d8e625737915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  behaviourSets:
+  - {fileID: 11400000, guid: 36b7939870edb2244bee1d13cb1bfa9b, type: 2}
+  - {fileID: 11400000, guid: 935fd06b517fef24c90e4df85aab4a5c, type: 2}
+  - {fileID: 11400000, guid: 4224cd5725da5804cbe5258da2e7d5ef, type: 2}
+  behavioursExplained: '0 - Wander
+
+    1 - Chase
+
+    2 - Attack'
+  state: 0

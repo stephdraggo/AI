@@ -53,13 +53,14 @@ namespace AI2
                 newAgent.name = "Agent " + i; //set birb's name
 
                 #region colour
-                
+                /*
                 Color colour = newAgent.GetComponent<SpriteRenderer>().material.color;
                 float multiplier = (Random.Range(-255, 255)); //random multiplier but only displays default colour or white
                 Debug.Log(multiplier.ToString());
                 colour *= multiplier;
 
                 newAgent.GetComponent<SpriteRenderer>().material.color = colour;
+                */
                 #endregion
 
                 newAgent.Initialise(this); //make birb according to these directions
