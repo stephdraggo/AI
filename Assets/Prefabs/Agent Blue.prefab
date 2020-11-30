@@ -119,7 +119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4801525466485774862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d26b07f1ad55f747b34e4f74905a285, type: 3}
   m_Name: 
@@ -131,4 +131,5 @@ MonoBehaviour:
   behavioursExplained: '0 - Wander
 
     1 - Flee'
+  flock: {fileID: 0}
   state: 0

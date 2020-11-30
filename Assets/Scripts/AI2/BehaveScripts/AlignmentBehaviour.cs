@@ -23,7 +23,7 @@ namespace AI2
             {
                 alignmentMove += (Vector2)item.transform.up; //get average direction by adding
             }
-            alignmentMove /= context.Count; //decrease magnitude
+            alignmentMove /= context.Count; //decrease magnitude/normalise ish (could be less)
 
             return alignmentMove; //return vector2 direction
         }

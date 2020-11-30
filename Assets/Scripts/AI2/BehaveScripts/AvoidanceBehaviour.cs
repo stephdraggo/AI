@@ -27,10 +27,12 @@ namespace AI2
                     avoidNeighbours++; //add neighbour to avoid list
                     avoidanceMove += (Vector2)(agent.transform.position - item.position); //add neighbours' positions together
                 }
-                if (avoidNeighbours > 0) //if there are neighbours to avoid
-                {
-                    avoidanceMove /= avoidNeighbours; //get average position to avoid
-                }
+               
+            }
+
+            if (avoidNeighbours > 0) //if there are neighbours to avoid
+            {
+                avoidanceMove /= avoidNeighbours; //get average position to avoid
             }
 
             return avoidanceMove; //return vector2 movement
