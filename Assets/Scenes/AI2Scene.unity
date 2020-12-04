@@ -1157,6 +1157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116395471}
   - component: {fileID: 1116395470}
+  - component: {fileID: 1116395472}
   m_Layer: 0
   m_Name: Flock Blue
   m_TagString: Untagged
@@ -1183,8 +1184,8 @@ MonoBehaviour:
   startingCount: 100
   driveFactor: 10
   maxSpeed: 5
-  neighbourRadius: 3
-  avoidanceRadius: 1
+  neighbourRadius: 4.19
+  avoidanceRadius: 1.62
 --- !u!4 &1116395471
 Transform:
   m_ObjectHideFlags: 0
@@ -1199,6 +1200,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1116395472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116395469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d26b07f1ad55f747b34e4f74905a285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  behaviourSets:
+  - {fileID: 11400000, guid: 4aa071328188ed54eb6aad05c42b415e, type: 2}
+  - {fileID: 11400000, guid: 2c8c4d8d6617ff04c9bf72d7cf358fda, type: 2}
+  behavioursExplained: 
+  flock: {fileID: 1116395470}
+  state: 0
 --- !u!1 &1237865720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,13 +1485,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1799188823}
   - component: {fileID: 1799188822}
+  - component: {fileID: 1799188824}
   m_Layer: 0
   m_Name: Flock Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1799188822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,6 +1528,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799188824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799188821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ee6da260cc72a4a874d8e625737915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  behaviourSets:
+  - {fileID: 11400000, guid: 4224cd5725da5804cbe5258da2e7d5ef, type: 2}
+  - {fileID: 11400000, guid: 935fd06b517fef24c90e4df85aab4a5c, type: 2}
+  - {fileID: 11400000, guid: 36b7939870edb2244bee1d13cb1bfa9b, type: 2}
+  behavioursExplained: 
+  flock: {fileID: 1799188822}
+  state: 0
 --- !u!1001 &1850062526
 PrefabInstance:
   m_ObjectHideFlags: 0

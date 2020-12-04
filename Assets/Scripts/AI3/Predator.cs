@@ -41,7 +41,7 @@ namespace AI2
         #region Functions
         protected override void DetermineBehaviour()
         {
-            if (state == PredatorState.Wander)
+            if (state == PredatorState.Attack)
             {
                 flock.behaviour = behaviourSets[0];
             }
@@ -49,14 +49,14 @@ namespace AI2
             {
                 flock.behaviour = behaviourSets[1];
             }
-            else if (state == PredatorState.Attack)
+            else if (state == PredatorState.Wander)
             {
                 flock.behaviour = behaviourSets[2];
             }
             else //catch if no state assigned
             {
                 state = PredatorState.Wander;
-                flock.behaviour = behaviourSets[0];
+                flock.behaviour = behaviourSets[2];
             }
         }
         #endregion
