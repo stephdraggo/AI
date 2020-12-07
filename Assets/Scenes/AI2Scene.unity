@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 4801525466485774849, guid: 7ba72b39acdf36b459ece284c307f3d1,
     type: 3}
-  behaviour: {fileID: 11400000, guid: d1b75379c2be19445920e609d2f1ecc3, type: 2}
+  behaviour: {fileID: 11400000, guid: 20603d48d7fcbaa42b3e38bc8605bf98, type: 2}
   whiteBirb: {fileID: 2100000, guid: 7e022a8a6e27143429130f596daecb7e, type: 2}
   startingCount: 100
   driveFactor: 10
