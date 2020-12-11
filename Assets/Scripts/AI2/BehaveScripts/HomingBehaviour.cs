@@ -16,12 +16,12 @@ namespace AI2
         {
             Vector2 centreOffset = centre - (Vector2)agent.transform.position; //get direction to centre
             float t = centreOffset.magnitude / radius; //get distance to centre
-            if (t < 5f) //if in range
+            if (t < 0.9f) //if in range
             {
                 return Vector2.zero; //don't affect direction
             }
 
-            return centreOffset; //pull to centre is stronger depending on how far from centre
+            return centreOffset*t*t; //pull to centre is stronger depending on how far from centre
         }
     }
 }
