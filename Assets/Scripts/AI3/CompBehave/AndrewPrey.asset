@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530c3d19d55ed9948852951de75983e4, type: 3}
-  m_Name: andrew test
+  m_Name: AndrewPrey
   m_EditorClassIdentifier: 
   behaviours:
   - behaviour: {fileID: 11400000, guid: f66425a11bebe16498e1572b496eafef, type: 2}
-    weight: 0
+    weight: 1
   - behaviour: {fileID: 11400000, guid: f66425a11bebe16498e1572b496eafef, type: 2}
     weight: 1
   - behaviour: {fileID: 11400000, guid: 801fab586946e724c81f16bbdd17363c, type: 2}
