@@ -23,7 +23,7 @@ namespace AI2
         #region Update
         void Update()
         {
-
+            UpdateLife();
         }
         #endregion
         #region Functions
